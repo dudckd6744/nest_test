@@ -5,6 +5,9 @@ export class BoardStatusValidationPipe implements PipeTransform {
   readonly StatusOptions = [BoardStatus.PRIVATE, BoardStatus.PUBLIC];
 
   transform(value: any) {
+    if (!value) {
+      throw new BadRequestException(`status should not be empty`);
+    }
     value = value.toUpperCase();
 
     if (!this.isStatusValid(value)) {
