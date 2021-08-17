@@ -7,8 +7,8 @@ import {
 } from 'class-validator';
 
 export class CreateUserDto {
-  // @IsString()
-  // @IsNotEmpty()
+  @IsString()
+  @IsNotEmpty()
   name: string;
 
   @IsString()

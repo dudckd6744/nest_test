@@ -4,7 +4,6 @@ import {
   Controller,
   Delete,
   Get,
-  Logger,
   Param,
   ParseIntPipe,
   Post,
@@ -24,7 +23,6 @@ import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe'
 
 @Controller('boards')
 export class BoardsController {
-  private logger = new Logger('BoardsController')
   constructor(private boardsService: BoardsService) {}
 
   @Get('/')
@@ -40,7 +38,6 @@ export class BoardsController {
     @Body() createBoardDto: CreateBoardDto,
     @Body('status', BoardStatusValidationPipe) status: BoardStatus,
   ): Promise<Board> {
-    this.logger.verbose(`User ${user.name} creating a new board payload: ${JSON.stringify(createBoardDto)}`)
     return this.boardsService.createBoard(createBoardDto, status, user);
   }
 
